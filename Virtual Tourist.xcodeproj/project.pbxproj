@@ -13,6 +13,7 @@
 		0756E1DE1FCF6E0C00EE3B37 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0756E1DD1FCF6E0C00EE3B37 /* Assets.xcassets */; };
 		0756E1E11FCF6E0C00EE3B37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0756E1DF1FCF6E0C00EE3B37 /* LaunchScreen.storyboard */; };
 		075AF01F1FD058F40073E137 /* PhotoAlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF01E1FD058F40073E137 /* PhotoAlbumController.swift */; };
+		075AF0241FD0A4FD0073E137 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 075AF0211FD09ED60073E137 /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		0756E1E01FCF6E0C00EE3B37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0756E1E21FCF6E0C00EE3B37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		075AF01E1FD058F40073E137 /* PhotoAlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumController.swift; sourceTree = "<group>"; };
+		075AF0221FD09ED60073E137 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		0756E1D51FCF6E0C00EE3B37 /* Virtual Tourist */ = {
 			isa = PBXGroup;
 			children = (
+				075AF0201FD09EBD0073E137 /* Model */,
 				075AF01D1FD058DB0073E137 /* Controllers */,
 				0756E1D61FCF6E0C00EE3B37 /* AppDelegate.swift */,
 				0756E1DA1FCF6E0C00EE3B37 /* Main.storyboard */,
@@ -73,6 +76,14 @@
 				075AF01E1FD058F40073E137 /* PhotoAlbumController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		075AF0201FD09EBD0073E137 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				075AF0211FD09ED60073E137 /* Model.xcdatamodeld */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,6 +161,7 @@
 				0756E1D91FCF6E0C00EE3B37 /* TravelLocationsMapViewController.swift in Sources */,
 				0756E1D71FCF6E0C00EE3B37 /* AppDelegate.swift in Sources */,
 				075AF01F1FD058F40073E137 /* PhotoAlbumController.swift in Sources */,
+				075AF0241FD0A4FD0073E137 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +344,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		075AF0211FD09ED60073E137 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				075AF0221FD09ED60073E137 /* Model.xcdatamodel */,
+			);
+			currentVersion = 075AF0221FD09ED60073E137 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0756E1CB1FCF6E0C00EE3B37 /* Project object */;
 }

@@ -12,10 +12,21 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    func preloadData() {
+        if let bool = UserDefaults.standard.bool(forKey: "returning") as Bool?,
+            bool == true {
+            print("not my first start up")
+        } else {
+            UserDefaults.standard.set(false, forKey: "returning")
+            print("first start up")
+        }
+    }
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        preloadData()
         return true
     }
 
