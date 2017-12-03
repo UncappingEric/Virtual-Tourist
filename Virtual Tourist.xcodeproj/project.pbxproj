@@ -14,6 +14,11 @@
 		0756E1E11FCF6E0C00EE3B37 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0756E1DF1FCF6E0C00EE3B37 /* LaunchScreen.storyboard */; };
 		075AF01F1FD058F40073E137 /* PhotoAlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF01E1FD058F40073E137 /* PhotoAlbumController.swift */; };
 		075AF0241FD0A4FD0073E137 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 075AF0211FD09ED60073E137 /* Model.xcdatamodeld */; };
+		075AF0261FD0F16B0073E137 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF0251FD0F16B0073E137 /* CoreDataStack.swift */; };
+		075AF0331FD0F3E50073E137 /* Photo+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF02F1FD0F3E50073E137 /* Photo+CoreDataClass.swift */; };
+		075AF0341FD0F3E50073E137 /* Photo+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF0301FD0F3E50073E137 /* Photo+CoreDataProperties.swift */; };
+		075AF0351FD0F3E50073E137 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF0311FD0F3E50073E137 /* Location+CoreDataClass.swift */; };
+		075AF0361FD0F3E50073E137 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075AF0321FD0F3E50073E137 /* Location+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,11 @@
 		0756E1E21FCF6E0C00EE3B37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		075AF01E1FD058F40073E137 /* PhotoAlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbumController.swift; sourceTree = "<group>"; };
 		075AF0221FD09ED60073E137 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		075AF0251FD0F16B0073E137 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		075AF02F1FD0F3E50073E137 /* Photo+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataClass.swift"; sourceTree = "<group>"; };
+		075AF0301FD0F3E50073E137 /* Photo+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Photo+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		075AF0311FD0F3E50073E137 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		075AF0321FD0F3E50073E137 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +91,12 @@
 		075AF0201FD09EBD0073E137 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				075AF02F1FD0F3E50073E137 /* Photo+CoreDataClass.swift */,
+				075AF0311FD0F3E50073E137 /* Location+CoreDataClass.swift */,
+				075AF0301FD0F3E50073E137 /* Photo+CoreDataProperties.swift */,
+				075AF0321FD0F3E50073E137 /* Location+CoreDataProperties.swift */,
 				075AF0211FD09ED60073E137 /* Model.xcdatamodeld */,
+				075AF0251FD0F16B0073E137 /* CoreDataStack.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -158,7 +173,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075AF0341FD0F3E50073E137 /* Photo+CoreDataProperties.swift in Sources */,
+				075AF0331FD0F3E50073E137 /* Photo+CoreDataClass.swift in Sources */,
+				075AF0261FD0F16B0073E137 /* CoreDataStack.swift in Sources */,
 				0756E1D91FCF6E0C00EE3B37 /* TravelLocationsMapViewController.swift in Sources */,
+				075AF0351FD0F3E50073E137 /* Location+CoreDataClass.swift in Sources */,
+				075AF0361FD0F3E50073E137 /* Location+CoreDataProperties.swift in Sources */,
 				0756E1D71FCF6E0C00EE3B37 /* AppDelegate.swift in Sources */,
 				075AF01F1FD058F40073E137 /* PhotoAlbumController.swift in Sources */,
 				075AF0241FD0A4FD0073E137 /* Model.xcdatamodeld in Sources */,

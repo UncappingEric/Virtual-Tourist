@@ -12,14 +12,14 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let stack = CoreDataStack(modelName: "Model")!
     
     func preloadData() {
         if let bool = UserDefaults.standard.bool(forKey: "returning") as Bool?,
             bool == true {
-            print("not my first start up")
+            
         } else {
             UserDefaults.standard.set(false, forKey: "returning")
-            print("first start up")
         }
     }
 
