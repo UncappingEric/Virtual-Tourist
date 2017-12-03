@@ -10,11 +10,9 @@ import UIKit
 import MapKit
 import CoreData
 
-class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
+class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegate {
 
     @IBOutlet weak var mapView: MKMapView!
-    
-    var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
     
     // MARK: Lifecylce Functions
     
@@ -26,7 +24,15 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         mapView.addGestureRecognizer(gesture)
         
         setLastSavedRegion()
-        displaySavedPins()
+        
+        let delegate = UIApplication.shared.delegate as! AppDelegate
+        let stack = delegate.stack
+        
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
+        fr.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true),
+                              NSSortDescriptor(key: "longitude", ascending: false)]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
     }
     
     // MARK: Delegate functions
@@ -38,6 +44,15 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let controller = storyboard?.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
         controller.annotation = view.annotation
+        
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
+        fr.sortDescriptors = []
+        
+        //let pred = NSPredicate(format: "location = %@", argumentArray: [])
+        
+        //fr.predicate = pred
+        controller.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: fetchedResultsController?.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -63,19 +78,17 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
         if gestureRecognizer.state == UIGestureRecognizerState.began {
             let touchPoint = gestureRecognizer.location(in: mapView)
             let coords = mapView.convert(touchPoint, toCoordinateFrom: mapView)
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coords
             
-            mapView.addAnnotation(annotation)
-            Location(lat: coords.latitude, lon: coords.longitude, context: fetchedResultsController.managedObjectContext)
+            Location(lat: coords.latitude, lon: coords.longitude, context: (fetchedResultsController?.managedObjectContext)!)
             
             do {
-                try (UIApplication.shared.delegate as! AppDelegate).stack.save()
+                try fetchedResultsController?.managedObjectContext.save()
             } catch {
-                print("There was an issue saving context.")
+                print("Error saving new annotation")
             }
         }
     }
+    
     
     func setLastSavedRegion() {
         if UserDefaults.standard.bool(forKey: "returning") {
@@ -93,35 +106,31 @@ class TravelLocationsMapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func displaySavedPins() {
-        let delegate = UIApplication.shared.delegate as! AppDelegate
-        let stack = delegate.stack
-        
-        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Location")
-        fr.sortDescriptors = [NSSortDescriptor(key: "latitude", ascending: true),
-                              NSSortDescriptor(key: "longitude", ascending: false)]
-
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: stack.context, sectionNameKeyPath: nil, cacheName: nil)
-        
-        do {
-            try fetchedResultsController.performFetch()
-        } catch {
-            print("error fetching")
-        }
-        
-        if let objs = fetchedResultsController.fetchedObjects as! [Location]? {
+        if let objs = fetchedResultsController?.fetchedObjects as! [Location]? {
             for location in objs {
                 let coords = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coords
-                mapView.addAnnotation(annotation)
+                annotation.
+                if !mapView.annotations.contains(where: { (mk) -> Bool in
+                    return mk.coordinate.latitude == annotation.coordinate.latitude && mk.coordinate.longitude == annotation.coordinate.longitude
+                }){
+                    mapView.addAnnotation(annotation)
+                }
             }
         } else {
-            print("no items to fetch")
+            print("no items fetched")
         }
     }
     
     func regionToArray(regionToConvert region: MKCoordinateRegion) -> [Double] {
         return [region.center.latitude, region.center.longitude, region.span.latitudeDelta, region.span.longitudeDelta]
+    }
+    
+    // MARK: Abstract functions
+    
+    override func updateViewAfterChange() {
+        displaySavedPins()
     }
 }
 

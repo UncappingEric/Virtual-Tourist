@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-class PhotoAlbumController: UIViewController, UICollectionViewDelegate, MKMapViewDelegate {
+class PhotoAlbumController: CoreDataViewController, UICollectionViewDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     
@@ -23,6 +23,7 @@ class PhotoAlbumController: UIViewController, UICollectionViewDelegate, MKMapVie
         let center = CLLocationCoordinate2D(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
         let span = MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
         mapView.setRegion(MKCoordinateRegion(center: center, span: span), animated: true)
+        
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -42,5 +43,6 @@ class PhotoAlbumController: UIViewController, UICollectionViewDelegate, MKMapVie
     }
     
     @IBAction func addNewCollection(_ sender: Any) {
+        
     }
 }
