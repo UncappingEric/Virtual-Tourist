@@ -44,15 +44,11 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         let controller = storyboard?.instantiateViewController(withIdentifier: "PhotoAlbumController") as! PhotoAlbumController
         controller.annotation = view.annotation
+        controller.location = getCorrespondingLocation((view.annotation?.coordinate)!)
         
         let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "Photo")
         fr.sortDescriptors = []
-        
-        //let pred = NSPredicate(format: "location = %@", argumentArray: [])
-        
-        //fr.predicate = pred
-        controller.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: fetchedResultsController?.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
-        
+        controller.fetchedResultsController = NSFetchedResultsController(fetchRequest: fr, managedObjectContext: (fetchedResultsController?.managedObjectContext)!, sectionNameKeyPath: nil, cacheName: nil)
         navigationController?.pushViewController(controller, animated: true)
     }
     
@@ -81,14 +77,19 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
             
             Location(lat: coords.latitude, lon: coords.longitude, context: (fetchedResultsController?.managedObjectContext)!)
             
-            do {
-                try fetchedResultsController?.managedObjectContext.save()
-            } catch {
-                print("Error saving new annotation")
-            }
+            (UIApplication.shared.delegate as! AppDelegate).stack.save()
         }
     }
     
+    func getCorrespondingLocation(_ coordinates: CLLocationCoordinate2D) -> Location? {
+        for obj in (fetchedResultsController?.fetchedObjects)! {
+            let loc = obj as? Location
+            if loc?.latitude == coordinates.latitude && loc?.longitude == coordinates.longitude {
+                return obj as? Location
+            }
+        }
+        return nil
+    }
     
     func setLastSavedRegion() {
         if UserDefaults.standard.bool(forKey: "returning") {
@@ -111,7 +112,6 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
                 let coords = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = coords
-                annotation.
                 if !mapView.annotations.contains(where: { (mk) -> Bool in
                     return mk.coordinate.latitude == annotation.coordinate.latitude && mk.coordinate.longitude == annotation.coordinate.longitude
                 }){
