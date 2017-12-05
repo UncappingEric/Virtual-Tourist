@@ -33,6 +33,8 @@ extension FlickrClient {
         static let BoundingBox = "bbox"
         static let Lat = "lat"
         static let Lon = "lon"
+        static let PerPage = "per_page"
+        static let Page = "page"
     }
     
     struct ParameterValues {

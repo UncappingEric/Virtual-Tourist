@@ -18,6 +18,7 @@ public class Photo: NSManagedObject {
             self.init(entity: ent, insertInto: context)
             self.data = data
             self.location = location
+            //self.creationDate = NSDate()
         } else {
             fatalError("Unable to find Entity name!")
         }

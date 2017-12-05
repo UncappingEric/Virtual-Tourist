@@ -17,14 +17,16 @@ class FlickrClient: NSObject {
         return Singleton.sharedInstance
     }
     
-    func fetchPhotosAt(_ latitude: Double, _ longitude: Double, _ completion: @escaping (_ success: Bool, _ data: [[String: Any]]? ) -> Void) {
+    func fetchPhotosAt(_ latitude: Double, _ longitude: Double,_ page: Int, _ completion: @escaping (_ success: Bool, _ data: [[String: Any]]? ) -> Void) {
         
-        let params = [ParameterKeys.APIKey : Constants.APIKey,
-                      ParameterKeys.Method : Methods.SearchMethod,
-                      ParameterKeys.Extras : ParameterValues.MediumURL,
-                      ParameterKeys.Format : ParameterValues.ResponseFormat,
-                      ParameterKeys.Lat    : String(describing: latitude),
-                      ParameterKeys.Lon    : String(describing: longitude),
+        let params = [ParameterKeys.APIKey  : Constants.APIKey,
+                      ParameterKeys.Method  : Methods.SearchMethod,
+                      ParameterKeys.Extras  : ParameterValues.MediumURL,
+                      ParameterKeys.Format  : ParameterValues.ResponseFormat,
+                      ParameterKeys.Lat     : String(describing: latitude),
+                      ParameterKeys.Lon     : String(describing: longitude),
+                      ParameterKeys.Page    : String(describing: page),
+                      ParameterKeys.PerPage : "100",
                       ParameterKeys.NoJSONCallback : ParameterValues.DisableJSONCallback]
         
         var components = URLComponents()

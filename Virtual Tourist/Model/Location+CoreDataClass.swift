@@ -18,7 +18,6 @@ public class Location: NSManagedObject {
             self.init(entity: ent, insertInto: context)
             self.latitude = lat
             self.longitude = lon
-            self.searched = false
         } else {
             fatalError("Unable to find Entity name!")
         }

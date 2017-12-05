@@ -2,7 +2,7 @@
 //  Location+CoreDataProperties.swift
 //  Virtual Tourist
 //
-//  Created by Eric Cajuste on 11/30/17.
+//  Created by Eric Cajuste on 12/5/17.
 //  Copyright © 2017 Cajuste. All rights reserved.
 //
 //
@@ -17,9 +17,8 @@ extension Location {
         return NSFetchRequest<Location>(entityName: "Location")
     }
 
-    @NSManaged public var searched: Bool
-    @NSManaged public var longitude: Double
     @NSManaged public var latitude: Double
+    @NSManaged public var longitude: Double
     @NSManaged public var photos: NSSet?
 
 }

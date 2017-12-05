@@ -61,6 +61,8 @@ class TravelLocationsMapViewController: CoreDataViewController, MKMapViewDelegat
             pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = false
             pinView!.pinTintColor = .red
+            pinView?.animatesDrop = true
+            pinView?.isDraggable = true
         } else {
             pinView!.annotation = annotation
         }
