@@ -26,7 +26,7 @@ class FlickrClient: NSObject {
                       ParameterKeys.Lat     : String(describing: latitude),
                       ParameterKeys.Lon     : String(describing: longitude),
                       ParameterKeys.Page    : String(describing: page),
-                      ParameterKeys.PerPage : "100",
+                      ParameterKeys.PerPage : "25",
                       ParameterKeys.NoJSONCallback : ParameterValues.DisableJSONCallback]
         
         var components = URLComponents()
